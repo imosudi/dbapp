@@ -3,7 +3,7 @@ import sys
 #sys.path.insert(0, '/var/www/clients/client6/web28/cgi-bin/venv/lib/python2.7/site-packages')
 
 #Import from noteapp.py
-from app import db
+#from app import db
 
 
 #import installed library
@@ -13,7 +13,7 @@ from wtforms import StringField, SubmitField, IntegerField, HiddenField, validat
 from wtforms.validators import Required
 
 
-
+"""
 class Note(db.Model): 
     id = db.Column(db.Integer, primary_key=True) 
     title = db.Column(db.String(80))
@@ -22,8 +22,10 @@ class Note(db.Model):
     def __init__(self, title, body): 
         self.title = title
         self.body = body
+"""
 
 class registrationForm(FlaskForm):
+    name = StringField('Name', [validators.Length(min=5, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
     email = StringField('Email Address', [validators.Length(min=6, max=35)])
     password = PasswordField('New Password', [ 
@@ -32,8 +34,8 @@ class registrationForm(FlaskForm):
     ])
     confirm = PasswordField('Repeat Password')
     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
-    submit = SubmitField('Complete Registeration')
-
+    #submit = SubmitField('Complete Registeration')
+"""
 class RegistrationForm(db.Model):
     __tablename__ = 'registrationforms'
     id = db.Column(db.Integer, primary_key=True)
@@ -50,3 +52,4 @@ class RegistrationForm(db.Model):
         self.email = email
         self.password = password
         self.accept_tos = accept_tos
+"""
