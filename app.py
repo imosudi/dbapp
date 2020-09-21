@@ -1,6 +1,11 @@
 import os
 import sys
 from flask import Flask, render_template, redirect, request, session
+
+#Running my current job
+from flask_mysqldb import MySQL
+
+
 from flask_bootstrap import Bootstrap
 from flask_admin import Admin
 from flask_moment import Moment
@@ -28,7 +33,7 @@ admin = Admin(app)
 
 #SQLITE SQLALCHEMY
 basedir = os.path.abspath(os.path.dirname(__file__))  
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')  
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://1' + os.path.join(basedir, 'app.sqlite')  
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True  
 db = SQLAlchemy(app)  
                      
