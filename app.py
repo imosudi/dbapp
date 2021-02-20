@@ -65,7 +65,7 @@ mysql = MySQL(app)
 def home():
     pageName = "home"
     cur = mysql.connection.cursor()
-    cur.execute(''' CREATE TABLE users ( 
+    cur.execute(''' CREATE TABLE IF NOT EXISTS users ( 
 	id INT(50) NOT NULL AUTO_INCREMENT , 
 	name VARCHAR(100) NULL DEFAULT NULL , 
 	username VARCHAR(450) NULL DEFAULT NULL , 
