@@ -20,10 +20,10 @@ app = Flask(__name__)
 
 
 #Config MySQL
-app.config['MYSQL_USER'] = 'sql2366691'
-app.config['MYSQL_PASSWORD'] = 'lD9%zU9%'
-app.config['MYSQL_HOST'] = 'sql2.freemysqlhosting.net'
-app.config['MYSQL_DB'] = 'sql2366691'
+app.config['MYSQL_USER'] = 'miodbapp' #'sql2366691'
+app.config['MYSQL_PASSWORD'] = 'miodbapp' #'lD9%zU9%'
+app.config['MYSQL_HOST'] = 'db4free.net' #'sql2.freemysqlhosting.net'
+app.config['MYSQL_DB'] = 'miodbapp' #'sql2366691'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 
@@ -33,20 +33,19 @@ mysql = MySQL(app)
 @app.route("/")
 def index():
     cur = mysql.connection.cursor()
-    """cur.execute(''' CREATE TABLE users ( 
+    """cur.execute(''' CREATE TABLE notes ( 
 	id INT(50) NOT NULL AUTO_INCREMENT , 
-	email VARCHAR(150) NULL DEFAULT NULL , 
-	name VARCHAR(150) NULL DEFAULT NULL , 
+	title VARCHAR(100) NULL DEFAULT NULL , 
+	body VARCHAR(450) NULL DEFAULT NULL , 
 	username VARCHAR(150) NULL DEFAULT NULL , 
-	password VARCHAR(150) NULL DEFAULT NULL , 
 	INDEX (id)) ENGINE = InnoDB;
     ''')
     """
-    #cur.execute(
+    cur.execute(
     '''
     INSERT INTO users(name, username, email, password) VALUES('MOs Is', 'mosudi', 'mosudi@gmail.com', 'password')
     '''
-    #)
+    )
     #cur.execute(
     '''
     INSERT INTO users(name, username, email, password) VALUES('MOs Isiaka', 'mosud', 'mimosudi@gmail.com', 'password')

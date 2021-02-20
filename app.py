@@ -41,11 +41,19 @@ import config
 
 
 #Config MySQL
-app.config['MYSQL_USER'] = 'sql2366691'
+"""app.config['MYSQL_USER'] = 'sql2366691'
 app.config['MYSQL_PASSWORD'] = 'lD9%zU9%'
 app.config['MYSQL_HOST'] = 'sql2.freemysqlhosting.net'
 app.config['MYSQL_DB'] = 'sql2366691'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+"""
+app.config['MYSQL_USER'] = 'miodbapp' #'sql2366691'
+app.config['MYSQL_PASSWORD'] = 'miodbapp1' #'lD9%zU9%'
+app.config['MYSQL_HOST'] = 'mysql-20948-0.cloudclusters.net' #'204.2.63.91' #'sql2.freemysqlhosting.net'
+app.config['MYSQL_DB'] = 'miodbapp' #'sql2366691'
+app.config['MYSQL_PORT'] = 20992
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
 
 
 mysql = MySQL(app)
@@ -56,6 +64,16 @@ mysql = MySQL(app)
 @app.route("/")
 def home():
     pageName = "home"
+    cur = mysql.connection.cursor()
+    cur.execute(''' CREATE TABLE users ( 
+	id INT(50) NOT NULL AUTO_INCREMENT , 
+	name VARCHAR(100) NULL DEFAULT NULL , 
+	username VARCHAR(450) NULL DEFAULT NULL , 
+	email VARCHAR(150) NULL DEFAULT NULL ,
+	password VARCHAR(150) NULL DEFAULT NULL , 
+	INDEX (id)) ENGINE = InnoDB;
+	)
+	''')
     return render_template("home.html", pageName=pageName, current_time=datetime.utcnow())
 
 
